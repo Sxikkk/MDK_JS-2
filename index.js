@@ -6,7 +6,7 @@ const isRightAnswers = new Array(questions.length);
 let rightAnswers = 0;
 
 questions.forEach(question => {
-    const input = question.querySelector('label').querySelectorAll('input');
+    const input = question.querySelector('.inputs').querySelectorAll('input');
     input.forEach(input => {
         input.onchange = e => {
             isRightAnswers[e.target.className] = e.target.checked && e.target.value === "right";
@@ -20,8 +20,8 @@ submitBtn.onclick = (e) => {
         if (answer) {
             questions[index].style.background = 'lightgreen'
             ++rightAnswers;
-        } else {
-            questions[index].style.background = 'lightgray'
+        } else if (answer === undefined || answer == null || answer === false) {
+            questions[index].style.background = 'red'
         }
     })
     submitBtn.disabled = true
